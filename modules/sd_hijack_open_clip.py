@@ -1,5 +1,7 @@
 import open_clip.tokenizer
 import torch
+import torch_npu
+import transfer_to_npu
 
 from modules import sd_hijack_clip, devices
 from modules.shared import opts

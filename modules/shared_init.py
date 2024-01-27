@@ -1,6 +1,8 @@
 import os
 
 import torch
+import torch_npu
+import transfer_to_npu
 
 from modules import shared
 from modules.shared import cmd_opts
@@ -29,6 +31,9 @@ def initialize():
     devices.dtype_vae = torch.float32 if cmd_opts.no_half or cmd_opts.no_half_vae else torch.float16
 
     shared.device = devices.device
+    if shared.device == "npu":
+        print(f"change the npu to npu0")
+        shared.device = "npu:0"
     shared.weight_load_location = None if cmd_opts.lowram else "cpu"
 
     from modules import shared_state

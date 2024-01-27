@@ -2,6 +2,9 @@ import math
 from collections import namedtuple
 
 import torch
+import torch_npu
+torch_npu.npu.set_device("npu:0")
+import transfer_to_npu
 
 from modules import prompt_parser, devices, sd_hijack
 from modules.shared import opts
